@@ -456,15 +456,61 @@
 
 								<!-- Preformatted Code -->
 									<h3>Preformatted</h3>
-									<pre><code>i = 0;
+									<pre><code>
+									
+package Sort;						
+import java.util.Random;
 
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
+public class BogoSort implements SortAlgorithm{
+	
+	private static final Random random = new Random();
+	
+	private static <T extends Comparable<T>> boolean isSorted(T array[]) {
+		for(int i = 0;  i < array.length -1; i++) {
+			if(SortUtils.less(array[i + 1], array[i])) return false;
+		}
+		return true;
+	}
+	
+	private static <T> void nextPermutation(T array[]) {
+		int length = array.length;
+		
+		for(int i = 0; i < array.length; i++) {
+			int randomIndex = i + random.nextInt(length - i);
+			SortUtils.swap(array, randomIndex, i);
+		}
+	}
+	
+	public <T extends Comparable<T>> T[] sort(T array[]) {
+		while(!isSorted(array)) {
+			nextPermutation(array);
+		}
+		return array;
+	}
+	
+	public static void main(String[] args) {
+		
+		Integer[] integers =  { 1, 50, 60, 258, 655, 444, 7, 10};
+		
+		BogoSort bogosort = new BogoSort();
+		
+		
+		SortUtils.print(bogosort.sort(integers));
+		
+		
+		String[] strings = {"d", "e", "a", "b", "g", "c", "f"};
+		
+		SortUtils.print(bogosort.sort(strings));
+		
+	}
+
 }
 
-print 'It took ' + i + ' iterations to sort the deck.';
+
+
+
+
+
 </code></pre>
 
 						</div>
