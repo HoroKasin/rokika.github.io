@@ -1,12 +1,9 @@
-/*
-	Projection by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
+//main Js 
 
 (function($) {
 
-	// Breakpoints.
+	//Breakpoints.
+
 		skel.breakpoints({
 			xlarge:	'(max-width: 1680px)',
 			large:	'(max-width: 1280px)',
@@ -20,16 +17,17 @@
 		var	$window = $(window),
 			$body = $('body');
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+		//Disable animations/transitions until the page has loaded.
 
+			$body.addClass('is-loading');
 			$window.on('load', function() {
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
 			});
 
-		// Prioritize "important" elements on medium.
+		//Prioritize "important" elements on medium.
+
 			skel.on('+medium -medium', function() {
 				$.prioritize(
 					'.important\\28 medium\\29',
@@ -37,9 +35,9 @@
 				);
 			});
 
-	// Off-Canvas Navigation.
+	//Off-Canvas Navigation.
+		//Navigation Panel.
 
-		// Navigation Panel.
 			$(
 				'<div id="navPanel">' +
 					$('#nav').html() +
@@ -56,7 +54,8 @@
 					side: 'left'
 				});
 
-		// Fix: Remove transitions on WP<10 (poor/buggy performance).
+		//Fix:2019_08_21
+
 			if (skel.vars.os == 'wp' && skel.vars.osVersion < 10)
 				$('#navPanel')
 					.css('transition', 'none');
